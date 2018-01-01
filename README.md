@@ -1,4 +1,4 @@
-# SEA Freight Tracking
+# SEA Freight Tracking FrontEnd
 > This system helps customers find shipment information form brokerage.
 
 [![NPM Version][npm-image]][npm-url]
