@@ -12,8 +12,10 @@ class AuthentApi {
     static fetchLogin(username, password){
         return new Promise((resolve, reject)=>{
             _.delay(()=>{
-                axios.post(`${config.API_URL}/authenticate`,{LoginName: username, Password: password})
-                    .then(callback => {})
+                axios.post(`${config.API_URL}/login`,{LoginName: username, Password: password})
+                    .then(callback => {
+                        resolve(callback.data)
+                    })
                     .catch(error => {reject(error)})
             }, config.DELAY)
         })

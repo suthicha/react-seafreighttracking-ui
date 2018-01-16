@@ -1,22 +1,22 @@
 // -----------------------------------------------
 // author: Suthicha Poonakaow
-// date: 02.01.2018
-// description: this is a reducer for login process.
+// date: 12.01.2018
+// description: this is a reducer to query shipment.
 // email: <isuthicha@gmail.com>
 // -----------------------------------------------
 import { 
-    AUTH_LOGGING_IN, 
-    AUTH_LOGGED_IN, 
-    AUTH_LOGGED_OUT 
+    FETCH_SHIPMENT_JOBS,
+    FETCH_SHIPMENT_BOOKING,
+    FETCH_SHIPMENT_ERROR,
 } from '../actions/actTypes'
 
 // -----------------------------------------------
 // Action Handlers
 // -----------------------------------------------
 const ACTION_HENDLERS = {
-    [AUTH_LOGGING_IN]: state =>({...state, isLoading: true}),
-    [AUTH_LOGGED_IN]: (state, { payload }) =>({...state, isLoading: false, data: Object.assign({}, payload)}),
-    [AUTH_LOGGED_OUT]: state => ({...state, isLoading: false })
+    [FETCH_SHIPMENT_JOBS]: (state, {payload}) =>({...state, jobs: payload, error: null}),
+    [FETCH_SHIPMENT_BOOKING]: (state, {payload}) =>({...state, booking: Object.assign({}, payload[0]), error: null}),
+    [FETCH_SHIPMENT_ERROR]: (state, {payload}) =>({...state, jobs: [], error: Object.assign({}, payload)})
 }
 
 
@@ -24,11 +24,12 @@ const ACTION_HENDLERS = {
 // Reducer
 // -----------------------------------------------
 const initialState = {
-    isLoading: false,
-    data: null,
+    jobs: [],
+    booking: null,
+    error: null,
 }
 
-export default function loginReducer(state = initialState, action){
+export default function authStorageReducer(state = initialState, action){
     const handler = ACTION_HENDLERS[action.type]
     return handler ? handler(state, action) : state
 }

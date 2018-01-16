@@ -4,7 +4,7 @@
 // description: 
 // email: <isuthicha@gmail.com>
 // -----------------------------------------------
-import * as types from './actionTypes'
+import * as types from './actTypes'
 import AuthenApi from '../api/apiAuthen'
 
 export function authLogginIn(){
@@ -19,13 +19,14 @@ export function authLoggedOut(){
     return { type: types.AUTH_LOGGED_OUT }
 }
 
+
 // check username and password.
-export function login(username, password){
-    return function(dispatch) {
+export function checkLogin(username, password){
+    return (dispatch) => {
         dispatch(authLogginIn())
         return AuthenApi.fetchLogin(username, password)
-            .then((callback)=>{
-                dispatch(authLoggedIn(callback))
+            .then((data)=>{
+                dispatch(authLoggedIn(data))
             })
             .catch((error)=> {})
     }

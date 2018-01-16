@@ -7,6 +7,7 @@ import reduxThunk from 'redux-thunk';
 import reducers from './reducers';
 import routes from './routes';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import './index.global.scss'
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
